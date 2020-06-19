@@ -16,28 +16,34 @@ public class Profesor extends Persona{
     
     boolean exit = false;
     private Scanner teclado = new Scanner(System.in);
-    private int actaPosecion;
-    private String titulo;
-    private Materia asignature;
+    private int actaPosecion = 0;
+    private String titulo = "";
+    private Materia materia;
 
     static ArrayList<Profesor> ListaProfesores;
+
+//    public Profesor(int actaPosecion, String titulo, Materia materia) {
+//        this.actaPosecion = actaPosecion;
+//        this.titulo = titulo;
+//        this.materia = materia;
+//    }
     
     public Profesor() {
         this.actaPosecion =0;
         this.titulo = "";
         ListaProfesores = new ArrayList<>();
     }
-       
 
-    public Profesor(Materia asignature, int actaPosecion, String titulo, TipoID tipoID, long noID, String nombre, Sexo sexo, Fecha fechaNacimiento) {
+    public Profesor(int actaPosecion, String titulo, Materia materia, TipoID tipoID, long noID, String nombre, Sexo sexo, Fecha fechaNacimiento) {
         super(tipoID, noID, nombre, sexo, fechaNacimiento);
-        this.actaPosecion =1; //actaPosecion;
-        this.titulo =""; // titulo;
-        this.asignature = asignature;
+        this.actaPosecion = actaPosecion;
+        this.titulo = titulo;
+        this.materia = materia;
         
         ListaProfesores = new ArrayList<>();
     }
 
+    
     public void MenuOption(){
         long NoIDProfesor;
         float notaStudiante;
@@ -61,11 +67,44 @@ public class Profesor extends Persona{
                             System.out.print("Ingrese el número de identificación del estudiante\n--> ");
                             NoID = teclado.nextLong();
                             if(student.Buscar(NoID)){
-                                System.out.println("Defina la cantidad de notas del estudiante a ingresar\n--> ");
-                                newNota.setNotaFinal(newNota.promedioNotas(teclado.nextInt()));
-                                newNota.setAsignature(getMateria());
+                                
+                                //Student ID
                                 newNota.setNoID(NoID);
-
+                                
+                                //Materia
+                                newNota.setMateria(getMateria());
+                                
+                                //Periodo
+                                System.out.print("Elija el periodo a asignar notas\n1. Periodo 1\n2. Periodo 2\n3. Periodo 3\n4. Periodo 4\n--> ");
+                                switch(teclado.nextInt()){
+                                    case 1:
+                                        newNota.setPeriodo(Periodo.Periodo1);
+                                        break;
+                                     
+                                    case 2:
+                                        newNota.setPeriodo(Periodo.Periodo2);
+                                        break;
+                                     
+                                    case 3:
+                                        newNota.setPeriodo(Periodo.Periodo3);
+                                        break;
+                                    
+                                    case 4:
+                                        newNota.setPeriodo(Periodo.Periodo4);
+                                        break;
+                                        
+                                    default:
+                                        System.out.println("¡Oops!, ha ocurrido un error.");
+                                        break;
+                                }
+                                
+                                //Promedio de notas
+                                System.out.println("Defina la cantidad de notas del estudiante a ingresar\n--> ");
+                                newNota.setPromedio(newNota.promedioNotas(teclado.nextInt()));
+                                
+                                //Promedio nota final
+                                newNota.setNotaFinal(newNota.promedioNotas(teclado.nextInt()) + newNota.getNotaFinal());
+                                
                                 //Add note
                                 newNota.Add(newNota);
                             }
@@ -83,15 +122,15 @@ public class Profesor extends Persona{
                 System.out.println("¡Oops!, intenta de nuevo...");
         }while(exit == true);
     }
-    
-    
-    public Materia getMateria(){
-        return asignature;
+
+    public Materia getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materia materia) {
+        this.materia = materia;
     }
     
-    public void setMateria(Materia asignature){
-        this.asignature = asignature;
-    }
     
     public int getActaPosecion() {
         return actaPosecion;
@@ -122,7 +161,7 @@ public class Profesor extends Persona{
         FileReader reader = null;
         BufferedReader buffer = null;
         try {
-            archivo = new File("Files\\Personas.txt");
+            archivo = new File("Files\\Profesor.txt");
             reader = new FileReader (archivo);
             buffer = new BufferedReader(reader);
             String linea;
@@ -130,7 +169,7 @@ public class Profesor extends Persona{
             while( (linea=buffer.readLine()) != null) {
                 
                 String[] datos=linea.split(",");
-                Profesor c=new Profesor(getMateria(),getActaPosecion(),getTitulo(),getTipoID(),getNoID(),getNombre(),getSexo(),getFechaNacimiento());
+                Profesor c=new Profesor(getActaPosecion(),getTitulo(),getMateria(),getTipoID(),getNoID(),getNombre(),getSexo(),getFechaNacimiento());
                 
                 Profesor.ListaProfesores.add(c);
             }
@@ -152,7 +191,7 @@ public class Profesor extends Persona{
     
     
     String getLinea(){
-        return getMateria() + "," + getActaPosecion() + "," +  getTitulo() + "," +  getTipoID() + "," +  getNoID() + "," +  getNombre() + "," +  getSexo() + "," + getFechaNacimiento().getFecha();
+        return getActaPosecion() + "," +  getTitulo() + "," + getMateria() + "," +  getTipoID() + "," +  getNoID() + "," +  getNombre() + "," +  getSexo() + "," + getFechaNacimiento().getFecha();
     }
     
     public void Sincronizar(){

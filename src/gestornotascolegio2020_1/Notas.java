@@ -16,51 +16,92 @@ import java.util.Scanner;
  * @author Usuario
  */
 
-// 1003245587, Calculo, notaFinal
 public class Notas {
     private Scanner teclado = new Scanner(System.in);
+    private Periodo periodo;
+
+
     private long NoID;
-    private Materia asignature;
+    private Materia materia;
     private float NotaFinal;
+    private float promedio;
 
     public Notas() {
+        NotaFinal = 0;
+        promedio = 0;
     }
+    //0,0,0,0,1003245577,Calculo,Promedio,0
+    //1,0,0,0,1003245577,Calculo,Promedio,6
+    //1,2,0,0,1003245577,Calculo,Promedio,6+PrimedioP2
+    //1,2,3,0,1003245577,Calculo,Promdeio,PromedioP2+PrimedioP3
+    //1,2,3,4,1003245577,Calculo,Promedio,(PromedioP3+PrimedioP4)/4
+    
+    //0,1003245577,Calculo,Promedio,0
+    //1,1003245577,Calculo,6,6
+    //2,1003245577,Calculo,7,6+PrimedioP2
+    //3,1003245577,Calculo,Promdeio,PromedioP2+PrimedioP3
+    //4,1003245577,Calculo,Promedio,(PromedioP3+PrimedioP4)/4
     
     static ArrayList<Notas> ListaNotas;
     
-    public Notas(long NoID, Materia asignature, float NotaFinal) {
+        public Notas(Periodo periodo, long NoID, Materia materia, float promedio,float NotaFinal) {
+        this.periodo = periodo;
         this.NoID = NoID;
-        this.asignature = asignature;
+        this.materia = materia;
         this.NotaFinal = NotaFinal;
         
         ListaNotas = new ArrayList<>();
+    }
+    
+    public float getPromedio() {
+        return promedio;
+    }
+
+//    public Notas(long NoID, Materia materia, float NotaFinal) {
+//        this.NoID = NoID;
+//        this.materia = materia;
+//        this.NotaFinal = NotaFinal;
+//        
+//        ListaNotas = new ArrayList<>();
+//    }
+    public void setPromedio(float promedio) {
+        this.promedio = promedio;
+    }
+
+    public Periodo getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(Periodo periodo) {
+        this.periodo = periodo;
+    }
+
+        
+    public long getNoID() {
+        return NoID;
     }
 
     public void setNoID(long NoID) {
         this.NoID = NoID;
     }
 
-    public void setAsignature(Materia asignature) {
-        this.asignature = asignature;
+    public Materia getMateria() {
+        return materia;
     }
 
-    public void setNotaFinal(float NotaFinal) {
-        this.NotaFinal = NotaFinal;
-    }
-
-    public long getNoID() {
-        return NoID;
-    }
-
-    public Materia getAsignature() {
-        return asignature;
+    public void setMateria(Materia materia) {
+        this.materia = materia;
     }
 
     public float getNotaFinal() {
         return NotaFinal;
     }
 
+    public void setNotaFinal(float NotaFinal) {
+        this.NotaFinal = NotaFinal;
+    }
 
+    
     
     public float promedioNotas(int nNotas){
         float n = 0;
@@ -86,7 +127,7 @@ public class Notas {
             while( (linea=buffer.readLine()) != null) {
                 
                 String[] datos=linea.split(",");
-                Notas c=new Notas(getNoID(), getAsignature(), getNotaFinal());
+                Notas c=new Notas(getPeriodo(),getNoID(), getMateria(), getPromedio(), getNotaFinal());
                 
                 Notas.ListaNotas.add(c);
             }
@@ -108,7 +149,7 @@ public class Notas {
     
     
     String getLinea(){
-        return getNoID() + "," +  getAsignature() + "," +  getNotaFinal();
+        return getPeriodo() + "," + getNoID() + "," +  getMateria() + "," + getPromedio() + "," +  getNotaFinal();
     }
     
     public void Sincronizar(){
@@ -170,6 +211,19 @@ public class Notas {
         return false;
     }
     
+        public float BuscarPromedioPeriodo(long NoID, Periodo periodo){
+        //int c=0;
+        for(Notas k: Notas.ListaNotas){
+            
+            if(k.getNoID() == NoID){
+                //k.imprimir();
+                if(k.getPeriodo() == periodo)
+                    return k.getPromedio();
+            }
+        }
+        return -1;
+    }
+    
     public boolean Encontrar(long NoID){
         
         for(Notas k: Notas.ListaNotas){
@@ -213,7 +267,7 @@ public class Notas {
 
     public void imprimir() {
        
-        System.out.println(getNoID() + "," +  getAsignature() + "," +  getNotaFinal());
+        System.out.println(getPeriodo() + "," + getNoID() + "," +  getMateria() + "," + getPromedio() + "," +  getNotaFinal());
         
     }
     

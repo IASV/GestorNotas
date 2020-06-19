@@ -22,12 +22,12 @@ public class Estudiante extends Persona{
     }
     
     
-    public void MenuOption(){
-        Scanner teclado = new Scanner(System.in);
-        Notas note = new Notas();
-        System.out.print("Ingrese número de identifiacación\n--> ");
-        note.Buscar(teclado.nextLong());
-    }
+//    public void MenuOption(){
+//        Scanner teclado = new Scanner(System.in);
+//        Notas note = new Notas();
+//        System.out.print("Ingrese número de identifiacación\n--> ");
+//        note.Buscar(teclado.nextLong());
+//    }
     
     
     public void CargarLista(){
@@ -37,7 +37,7 @@ public class Estudiante extends Persona{
         FileReader reader = null;
         BufferedReader buffer = null;
         try {
-            archivo = new File("Files\\Estudiantes.txt");
+            archivo = new File("Files\\Estudiante.txt");
             reader = new FileReader (archivo);
             buffer = new BufferedReader(reader);
             String linea;
@@ -67,7 +67,7 @@ public class Estudiante extends Persona{
     
     
     String getLinea(){
-        return getTipoID() + "," +  getNoID() + "," +  getNombre() + "," +  getSexo() + "," + getFechaNacimiento().getFecha();
+        return getTipoID() + "," +  getNoID() + "," +  getNombre() + "," +  getSexo() + "," + getFechaNacimiento();
     }
     
     public void Sincronizar(){

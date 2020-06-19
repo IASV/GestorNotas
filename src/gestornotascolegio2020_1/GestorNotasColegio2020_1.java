@@ -9,14 +9,18 @@ public class GestorNotasColegio2020_1 {
         Administrador admin = new Administrador();
         Profesor teacher = new Profesor();
         Estudiante student = new Estudiante();
+        Notas note = new Notas();
         
         int op;
         Scanner teclado = new Scanner(System.in);
         
+        student.CargarLista();
+        teacher.CargarLista();
+        note.CargarLista();
 //        Profesor p=new Profesor();
 //        
 //        p.CargarLista();
-//        
+//        1
 //        for (Profesor q : Profesor.ListaProfesores) {
 //            q.imprimir();
 //        }
@@ -31,20 +35,18 @@ public class GestorNotasColegio2020_1 {
             switch(op){
                 case 1:
                     //Administradores
-                    admin.CargarLista();
                     admin.MenuOption();
                     break;
                 
                 case 2:
                     //Profesores
-                    teacher.CargarLista();
                     teacher.MenuOption();
                     break;
                    
                 case 3:
-                    //admin.Sincronizar();
-                    teacher.Sincronizar();
                     student.Sincronizar();
+                    teacher.Sincronizar();
+                    //note.Sincronizar();
                     System.out.println("Saliste.");
                     break;
                     
