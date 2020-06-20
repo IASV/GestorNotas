@@ -1,1 +1,2 @@
-Pasaporte,1003245522,Damian,Masculino,gestornotascolegio2020_1.Fecha@9807454
+TarjetaIdentidad,1003245511,Harold,Masculino,3/2/2003
+TarjetaIdentidad,1003245512,Andres,Masculino,3/2/2003

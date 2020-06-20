@@ -25,7 +25,7 @@ public class Fecha {
     
     public String getFecha(){
         
-        return dia+"/" + mes + "/"+año;
+        return dia+ "/" + mes + "/"+año;
         
     }
 
@@ -51,6 +51,18 @@ public class Fecha {
 
     public void setAño(int año) {
         this.año = año;
+    }
+    
+    public static int getStringFecha(String fecha, String value){
+        String[] values = fecha.split("/");
+        if(value == "d")
+            return Integer.parseInt(values[0]);
+        else if(value == "m")
+            return Integer.parseInt(values[1]);
+        else if(value == "a")
+            return Integer.parseInt(values[2]);
+        else
+            return -1;
     }
             
 }

@@ -40,7 +40,6 @@ public class Administrador extends Persona{
         Estudiante newStudent = new Estudiante();
         Profesor newProfesor = new Profesor();
         
-        
 //        System.out.print("_______________ Bienvenido _______________\n\n"
 //                + "Ingrese usuario\n--> ");
 //        NameUser = teclado.nextLine();
@@ -55,6 +54,7 @@ public class Administrador extends Persona{
                         + "3. Eliminar estudiante\n"
                         + "4. Eliminar maestro\n"
                         + "5. Salir\n"
+                        + "6. Ver estudiantes\n"
                         + "\n--> ");
                 op = teclado.nextInt();
 
@@ -114,6 +114,8 @@ public class Administrador extends Persona{
                         newStudent.Add(newStudent);
                         System.out.println("Estudiante agregado a la lista.");
                         newStudent.imprimir();
+                        System.out.println("Lista estudiantes");
+                        Estudiante.Listar();
                         
                         break;
                         
@@ -239,6 +241,12 @@ public class Administrador extends Persona{
                     case 5:
                         //Exit
                         exit = true;
+                        break;
+                        
+                    case 6:
+                        //Ver estudiantes
+                        System.out.println("Lista estudiantes");
+                        Estudiante.Listar();
                         break;
 
                     default:

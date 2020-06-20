@@ -15,12 +15,12 @@ public class GestorNotasColegio2020_1 {
         Scanner teclado = new Scanner(System.in);
         
         student.CargarLista();
-        teacher.CargarLista();
-        note.CargarLista();
+//        teacher.CargarLista();
+//        note.CargarLista();
 //        Profesor p=new Profesor();
 //        
 //        p.CargarLista();
-//        1
+//        
 //        for (Profesor q : Profesor.ListaProfesores) {
 //            q.imprimir();
 //        }
@@ -40,13 +40,14 @@ public class GestorNotasColegio2020_1 {
                 
                 case 2:
                     //Profesores
-                    teacher.MenuOption();
+//                    teacher.MenuOption();
+//                    note.Sincronizar();
                     break;
                    
                 case 3:
+                    //student.getLinea();
                     student.Sincronizar();
-                    teacher.Sincronizar();
-                    //note.Sincronizar();
+                    //teacher.Sincronizar();
                     System.out.println("Saliste.");
                     break;
                     

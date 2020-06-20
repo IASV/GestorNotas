@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Estudiante extends Persona{
 
@@ -21,15 +20,6 @@ public class Estudiante extends Persona{
         super(tipoID, noID, nombre, sexo, fechaNacimiento);
     }
     
-    
-//    public void MenuOption(){
-//        Scanner teclado = new Scanner(System.in);
-//        Notas note = new Notas();
-//        System.out.print("Ingrese número de identifiacación\n--> ");
-//        note.Buscar(teclado.nextLong());
-//    }
-    
-    
     public void CargarLista(){
         //carga la lista de contactos del origen de datos
         
@@ -42,13 +32,25 @@ public class Estudiante extends Persona{
             buffer = new BufferedReader(reader);
             String linea;
             
-            while( (linea=buffer.readLine()) != null) {
-                
+            while((linea = buffer.readLine())!= null) {
                 String[] datos=linea.split(",");
-                Estudiante c=new Estudiante(getTipoID(),getNoID(),getNombre(),getSexo(),getFechaNacimiento());
-                
+                Fecha fecha = new Fecha(Fecha.getStringFecha(datos[4], "d"),Fecha.getStringFecha(datos[4], "m"),Fecha.getStringFecha(datos[4], "a"));
+                Estudiante c = new Estudiante(TipoID.compareTipoID(datos[0]),Long.parseLong(datos[1]),datos[2],Sexo.compareSexo(datos[3]),fecha);
                 Estudiante.ListaEstudiantes.add(c);
+      
+//                System.out.println(datos.length);
+//                for (int i = 0; i < datos.length; i++) {
+//                    System.out.print(datos[i] + ", ");
+//                }
+//                System.out.println();
+                
+//TarjetaIdentidad,1003245582,Camilo,Masculino,2/3/2002
+//TarjetaIdentidad,1003245582,Andres,Masculino,2/3/2002
+                
             }
+            System.out.println("Lista estudiantes");
+            Estudiante.Listar();
+            
         }
         catch(Exception e){
             e.printStackTrace();
@@ -61,13 +63,15 @@ public class Estudiante extends Persona{
                 e2.printStackTrace();
             }
         }
+        
+        
 
     }
 
     
     
     String getLinea(){
-        return getTipoID() + "," +  getNoID() + "," +  getNombre() + "," +  getSexo() + "," + getFechaNacimiento();
+        return getTipoID() + "," +  getNoID() + "," +  getNombre() + "," +  getSexo() + "," + getFechaNacimiento().getFecha();
     }
     
     public void Sincronizar(){
@@ -81,7 +85,7 @@ public class Estudiante extends Persona{
 
            for(Estudiante c: Estudiante.ListaEstudiantes){
 
-              Lineas +=c.getLinea();
+              Lineas +=c.getLinea() + "\n";
 
            }
            
@@ -109,7 +113,7 @@ public class Estudiante extends Persona{
         
     }
     
-    public void Listar(){
+    public static void Listar(){
         
         for(Estudiante k: Estudiante.ListaEstudiantes){
             k.imprimir();
