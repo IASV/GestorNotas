@@ -1,2 +1,13 @@
+TarjetaIdentidad,1003245555,Ronald,Masculino,2/2/2003
+Cedula,1003245522,Carlos,Masculino,3/5/2000
+TarjetaIdentidad,1003245533,Adam,Masculino,3/7/2003
 TarjetaIdentidad,1003245511,Harold,Masculino,3/2/2003
 TarjetaIdentidad,1003245512,Andres,Masculino,3/2/2003
+TarjetaIdentidad,1003245522,Adrea,Femenino,5/6/2003
+TarjetaIdentidad,1003245581,Luis,Masculino,3/3/2001
+TarjetaIdentidad,1003245888,Junior,Masculino,2/7/2003
+TarjetaIdentidad,1003245666,Pablo,Masculino,3/3/2003
+TarjetaIdentidad,1003245111,Judas,Masculino,2/2/2003
+Cedula,1003245325,Mateo,Masculino,9/9/2000
+TarjetaIdentidad,1003245123,Sebastian,Masculino,3/4/2003
+Pasaporte,1003245882,Messi,Masculino,2/5/2000

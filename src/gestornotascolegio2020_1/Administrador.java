@@ -37,7 +37,6 @@ public class Administrador extends Persona{
         Sexo sexo;
         Fecha fechaNacimiento;
         
-        Estudiante newStudent = new Estudiante();
         Profesor newProfesor = new Profesor();
         
 //        System.out.print("_______________ Bienvenido _______________\n\n"
@@ -61,6 +60,7 @@ public class Administrador extends Persona{
                 switch(op){
                     case 1:
                         //Create student
+                        Estudiante newStudent = new Estudiante();
                         //TipoID
                         System.out.print("Escoja tipo de ID\n1. Tarjeta de identidad\n2. Cédula\n3. Pasaporte\n--> ");
                         switch(teclado.nextInt()){
@@ -111,6 +111,7 @@ public class Administrador extends Persona{
                         newStudent.setFechaNacimiento(fechaNacimiento);
 
                         //Añdir estudiante la lista
+                        //if(newStudent.Encontrar(newStudent))
                         newStudent.Add(newStudent);
                         System.out.println("Estudiante agregado a la lista.");
                         newStudent.imprimir();
@@ -216,7 +217,7 @@ public class Administrador extends Persona{
                             long id = teclado.nextLong();
                             System.out.print("Dese eliminar el estudiante\n1. Si\n2. No\n--> ");
                             if(teclado.nextInt() == 1){
-                                newStudent.Eliminar(id);
+                                //newStudent.Eliminar(id);
                                 System.out.print("Estudiante eliminado con exito");
                             }
                             else{

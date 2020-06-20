@@ -10,10 +10,10 @@ import java.util.ArrayList;
 
 public class Estudiante extends Persona{
 
-    static ArrayList<Estudiante> ListaEstudiantes;
+    static ArrayList<Estudiante> ListaEstudiantes = new ArrayList<>();
     
     public Estudiante() {
-        ListaEstudiantes = new  ArrayList<>();
+        //ListaEstudiantes = new  ArrayList<>();
     }
 
     public Estudiante(TipoID tipoID, long noID, String nombre, Sexo sexo, Fecha fechaNacimiento) {
@@ -139,6 +139,15 @@ public class Estudiante extends Persona{
                return true;
         }
         return false;
+    }
+    
+    public boolean Encontrar(Estudiante c){
+        
+        for(Estudiante k: Estudiante.ListaEstudiantes){
+            if(k.equals(c))
+               return false;
+        }
+        return true;
     }
     
     public boolean Eliminar(long numero){
