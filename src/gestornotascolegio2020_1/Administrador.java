@@ -51,9 +51,10 @@ public class Administrador extends Persona{
                         + "2. Crear maestro\n"
                         + "3. Eliminar estudiante\n"
                         + "4. Eliminar maestro\n"
-                        + "5. Salir\n"
-                        + "6. Ver estudiantes\n"
-                        + "7. Ver profesores\n"
+                        + "5. Consultar boletines\n"
+                        + "6. Salir\n"
+                        + "7. Ver estudiantes\n"
+                        + "8. Ver profesores\n"
                         + "\n--> ");
                 op = teclado.nextInt();
 
@@ -238,19 +239,47 @@ public class Administrador extends Persona{
                                 System.out.println("Profesor no eliminado");
                             }
                         break;
-                        
+                    
                     case 5:
+                        //Consultar boletines
+                        System.out.print("Ingrese número de identificación del estudiante\n--> ");
+                        long NoIDStudent = teclado.nextInt();
+                        if(Estudiante.Buscar(NoIDStudent)){
+                            Materia[] materia = {Materia.Calculo, Materia.Fisica, Materia.Quimica, Materia.Religion, Materia.Etica};
+//                            Boletin.PublicarBoletin(NoIDStudent, materia, Periodo.Periodo1);
+                            float p1 = Notas.BuscarPromedioPeriodoMateria(NoIDStudent, Materia.Calculo, Periodo.Periodo1);
+                            float p2 = Notas.BuscarPromedioPeriodoMateria(NoIDStudent, Materia.Calculo, Periodo.Periodo2);
+                            float p3 = Notas.BuscarPromedioPeriodoMateria(NoIDStudent, Materia.Calculo, Periodo.Periodo3);
+                            float p4 = Notas.BuscarPromedioPeriodoMateria(NoIDStudent, Materia.Calculo, Periodo.Periodo4);
+                            if(p1 != 0.0 && p2 == 0.0 && p3 == 0.0 && p4 == 0.0){
+                                Boletin.PublicarBoletin(NoIDStudent, materia, Periodo.Periodo1);
+                            }
+                            else if(p1 != 0.0 && p2 != 0.0 && p3 == 0.0 && p4 == 0.0){
+                                Boletin.PublicarBoletin(NoIDStudent, materia, Periodo.Periodo2);
+                            }
+                            else if(p1 != 0.0 && p2 != 0.0 && p3 != 0.0 && p4 == 0.0){
+                                Boletin.PublicarBoletin(NoIDStudent, materia, Periodo.Periodo3);
+                            }
+                            else if(p1 != 0.0 && p2 != 0.0 && p3 != 0.0 && p4 != 0.0){
+                                Boletin.PublicarBoletin(NoIDStudent, materia, Periodo.Periodo4);
+                            }
+                        }
+                        else
+                            System.out.println("Estudiante no encontrado");
+                        break;
+                        
+                    case 6:
                         //Exit
                         exit = true;
                         break;
                         
-                    case 6:
+                    case 7:
                         //Ver estudiantes
                         System.out.println("Lista estudiantes");
                         Estudiante.Listar();
                         break;
                         
-                    case 7:
+                    case 8:
                         //Ver profesores
                         System.out.println("Lista profesores");
                         Profesor.Listar();

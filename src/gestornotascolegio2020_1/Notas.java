@@ -126,7 +126,6 @@ public class Notas {
                 
                 Notas.ListaNotas.add(c);
             }
-            Listar();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -214,7 +213,30 @@ public class Notas {
                     return k.getPromedio();
             }
         }
-        return -1;
+        return 0;
+    }
+    
+    public static float BuscarPromedioPeriodoMateria(long NoID, Materia materia, Periodo periodo){
+        for(Notas k: Notas.ListaNotas){
+            if(k.getNoID() == NoID){
+                if(k.getMateria().toString().equals(materia.toString())){
+                    if(k.getPeriodo().toString().equals(periodo.toString()))
+                        return k.getPromedio();
+                }
+            }
+        }
+        return 0;
+    }
+    
+    public static float BuscarPromedioPeriodoMateriaFinal(long NoID, Materia materia, Periodo periodo){
+        for(Notas k: Notas.ListaNotas){
+            if(k.getNoID() == NoID){
+                if(k.getMateria().toString().equals(materia.toString()))
+                    if(k.getPeriodo().toString().equals(periodo.toString()))
+                        return k.getNotaFinal();
+            }
+        }
+        return 0;
     }
     
     public boolean Encontrar(long NoID){

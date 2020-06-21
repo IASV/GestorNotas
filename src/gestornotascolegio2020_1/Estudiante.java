@@ -123,7 +123,7 @@ public class Estudiante extends Persona{
         
     }
       
-    public boolean Buscar(long NoID){
+    public static boolean Buscar(long NoID){
         for(Estudiante k: Estudiante.ListaEstudiantes){
             
             if(k.getNoID() == NoID){
@@ -132,6 +132,15 @@ public class Estudiante extends Persona{
             }
         }
         return false;
+    }
+    
+    public static String BuscarNombre(long NoID){
+        for(Estudiante k: Estudiante.ListaEstudiantes){
+            if(k.getNoID() == NoID){
+                return k.getNombre();
+            }
+        }
+        return null;
     }
     
     public boolean Encontrar(String nombre){
