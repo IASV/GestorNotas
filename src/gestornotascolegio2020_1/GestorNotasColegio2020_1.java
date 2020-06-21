@@ -16,7 +16,7 @@ public class GestorNotasColegio2020_1 {
         
         student.CargarLista();
         teacher.CargarLista();
-//        note.CargarLista();
+        note.CargarLista();
 //        Profesor p=new Profesor();
 //        
 //        p.CargarLista();
@@ -40,14 +40,14 @@ public class GestorNotasColegio2020_1 {
                 
                 case 2:
                     //Profesores
-//                    teacher.MenuOption();
-//                    note.Sincronizar();
+                    teacher.MenuOption();
                     break;
                    
                 case 3:
                     //student.getLinea();
                     student.Sincronizar();
                     teacher.Sincronizar();
+                    note.Sincronizar();
                     System.out.println("Saliste.");
                     break;
                     

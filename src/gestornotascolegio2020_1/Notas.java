@@ -30,27 +30,22 @@ public class Notas {
         NotaFinal = 0;
         promedio = 0;
     }
-    //0,0,0,0,1003245577,Calculo,Promedio,0
-    //1,0,0,0,1003245577,Calculo,Promedio,6
-    //1,2,0,0,1003245577,Calculo,Promedio,6+PrimedioP2
-    //1,2,3,0,1003245577,Calculo,Promdeio,PromedioP2+PrimedioP3
-    //1,2,3,4,1003245577,Calculo,Promedio,(PromedioP3+PrimedioP4)/4
-    
     //0,1003245577,Calculo,Promedio,0
     //1,1003245577,Calculo,6,6
     //2,1003245577,Calculo,7,6+PrimedioP2
     //3,1003245577,Calculo,Promdeio,PromedioP2+PrimedioP3
     //4,1003245577,Calculo,Promedio,(PromedioP3+PrimedioP4)/4
     
-    static ArrayList<Notas> ListaNotas;
+    static ArrayList<Notas> ListaNotas = new ArrayList<>();
     
-        public Notas(Periodo periodo, long NoID, Materia materia, float promedio,float NotaFinal) {
+        public Notas(Periodo periodo, long NoID, Materia materia, float promedio, float NotaFinal) {
         this.periodo = periodo;
         this.NoID = NoID;
         this.materia = materia;
         this.NotaFinal = NotaFinal;
+        this.promedio = promedio;
         
-        ListaNotas = new ArrayList<>();
+//        ListaNotas = new ArrayList<>();
     }
     
     public float getPromedio() {
@@ -105,8 +100,8 @@ public class Notas {
     
     public float promedioNotas(int nNotas){
         float n = 0;
-        for (int i = 0; i <= nNotas; i++) {
-            System.out.println("Ingrse nota "+(i+1));
+        for (int i = 0; i < nNotas; i++) {
+            System.out.print("Ingrse nota "+(i+1)+"\n--> ");
             n += teclado.nextFloat();
         }
         return n/nNotas;
@@ -127,10 +122,11 @@ public class Notas {
             while( (linea=buffer.readLine()) != null) {
                 
                 String[] datos=linea.split(",");
-                Notas c=new Notas(getPeriodo(),getNoID(), getMateria(), getPromedio(), getNotaFinal());
+                Notas c=new Notas(Periodo.comparePeriodo(datos[0]),Integer.parseInt(datos[1]), Materia.compareMateria(datos[2]), Float.parseFloat(datos[3]), Float.parseFloat(datos[4]));
                 
                 Notas.ListaNotas.add(c);
             }
+            Listar();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -163,7 +159,7 @@ public class Notas {
 
            for(Notas c: Notas.ListaNotas){
 
-              Lineas +=c.getLinea();
+              Lineas +=c.getLinea()+"\n";
 
            }
            
@@ -191,7 +187,7 @@ public class Notas {
         
     }
     
-    public void Listar(){
+    public static void Listar(){
         
         for(Notas k: Notas.ListaNotas){
             k.imprimir();
@@ -211,12 +207,9 @@ public class Notas {
         return false;
     }
     
-        public float BuscarPromedioPeriodo(long NoID, Periodo periodo){
-        //int c=0;
+    public float BuscarPromedioPeriodo(long NoID, Periodo periodo){
         for(Notas k: Notas.ListaNotas){
-            
             if(k.getNoID() == NoID){
-                //k.imprimir();
                 if(k.getPeriodo() == periodo)
                     return k.getPromedio();
             }

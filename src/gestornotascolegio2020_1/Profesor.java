@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 public class Profesor extends Persona{
     
-    private Notas newNota = new Notas();
     private Estudiante student = new Estudiante();
     
     boolean exit = false;
@@ -49,11 +48,11 @@ public class Profesor extends Persona{
         float notaStudiante;
         long NoID;
         int op;
-        do{
-            System.out.print("_______________ Bienvenido _______________\n\n"
-                + "Ingrese su número de identificación\n--> ");
-            NoIDProfesor = teclado.nextLong();
-            if(Encontrar(NoIDProfesor)){
+        System.out.print("_______________ Bienvenido _______________\n\n"
+            + "Ingrese su número de identificación\n--> ");
+        NoIDProfesor = teclado.nextLong();
+        if(Encontrar(NoIDProfesor)){
+            do{
                 System.out.print("_______________ Menú Profesor _______________\n\n"
                             + "1. Registrar nota estudiante\n"
                             + "2. Salir\n"
@@ -63,6 +62,7 @@ public class Profesor extends Persona{
                     switch(op){
                         case 1:
                             //Register student
+                            Notas newNota = new Notas();
                             //TipoID
                             System.out.print("Ingrese el número de identificación del estudiante\n--> ");
                             NoID = teclado.nextLong();
@@ -72,41 +72,48 @@ public class Profesor extends Persona{
                                 newNota.setNoID(NoID);
                                 
                                 //Materia
-                                newNota.setMateria(getMateria());
+                                newNota.setMateria(EncontrarMateria(NoIDProfesor));
+                                
+                                //Promedio de notas
+                                System.out.print("Defina la cantidad de notas del estudiante a ingresar\n--> ");
+                                newNota.setPromedio(newNota.promedioNotas(teclado.nextInt()));
                                 
                                 //Periodo
                                 System.out.print("Elija el periodo a asignar notas\n1. Periodo 1\n2. Periodo 2\n3. Periodo 3\n4. Periodo 4\n--> ");
                                 switch(teclado.nextInt()){
                                     case 1:
                                         newNota.setPeriodo(Periodo.Periodo1);
+                                        //Promedio nota final
+                                        newNota.setNotaFinal(newNota.getPromedio());
                                         break;
                                      
                                     case 2:
                                         newNota.setPeriodo(Periodo.Periodo2);
+                                        //Promedio nota final
+                                        newNota.setNotaFinal((newNota.BuscarPromedioPeriodo(NoID, Periodo.Periodo1)+newNota.getPromedio())/2);
                                         break;
                                      
                                     case 3:
                                         newNota.setPeriodo(Periodo.Periodo3);
+                                        //Promedio nota final
+                                        newNota.setNotaFinal((newNota.BuscarPromedioPeriodo(NoID, Periodo.Periodo1)+newNota.BuscarPromedioPeriodo(NoID, Periodo.Periodo2)+newNota.getPromedio())/3);
                                         break;
                                     
                                     case 4:
                                         newNota.setPeriodo(Periodo.Periodo4);
+                                        //Promedio nota final
+                                        newNota.setNotaFinal((newNota.BuscarPromedioPeriodo(NoID, Periodo.Periodo3)+newNota.BuscarPromedioPeriodo(NoID, Periodo.Periodo2)+newNota.BuscarPromedioPeriodo(NoID, Periodo.Periodo1)+newNota.getPromedio())/4);
                                         break;
                                         
                                     default:
                                         System.out.println("¡Oops!, ha ocurrido un error.");
                                         break;
                                 }
-                                
-                                //Promedio de notas
-                                System.out.println("Defina la cantidad de notas del estudiante a ingresar\n--> ");
-                                newNota.setPromedio(newNota.promedioNotas(teclado.nextInt()));
-                                
-                                //Promedio nota final
-                                newNota.setNotaFinal(newNota.promedioNotas(teclado.nextInt()) + newNota.getNotaFinal());
-                                
+                                                       
                                 //Add note
                                 newNota.Add(newNota);
+                                
+                                Notas.Listar();
                             }
                             else
                                 System.out.println("¡Oops!, el estudiante no existe o no esta registrado");
@@ -117,12 +124,11 @@ public class Profesor extends Persona{
                             break;
 
                     }
-            }
-            else
-                System.out.println("¡Oops!, intenta de nuevo...");
-        }while(exit == true);
+            }while(exit != true);
+            
+        }else
+            System.out.println("¡Oops!, intenta de nuevo...");
     }
-
     public Materia getMateria() {
         return materia;
     }
@@ -182,8 +188,8 @@ public class Profesor extends Persona{
                 Profesor.ListaProfesores.add(c);
             }
             //Ver profesores
-            System.out.println("Lista profesores");
-            Profesor.Listar();            
+//            System.out.println("Lista profesores");
+//            Profesor.Listar();            
             
         }
         catch(Exception e){
@@ -253,7 +259,7 @@ public class Profesor extends Persona{
         
     }
       
-    public int Buscar(Long NoID){
+    public int Buscar(long NoID){
         int c=0;
         for(Profesor k: Profesor.ListaProfesores){
             
@@ -273,6 +279,15 @@ public class Profesor extends Persona{
                return true;
         }
         return false;
+    }
+    
+    public static Materia EncontrarMateria(long NoID){
+        
+        for(Profesor k: Profesor.ListaProfesores){
+            if(k.getNoID() == NoID)
+               return k.getMateria();
+        }
+        return null;
     }
     
     public boolean Eliminar(long numero){

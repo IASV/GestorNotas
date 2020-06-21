@@ -1,0 +1,4 @@
+Periodo1,1003245882,Fisica,10.0,10.0
+Periodo2,1003245882,Fisica,6.0,8.0
+Periodo3,1003245882,Fisica,10.0,8.666667
+Periodo4,1003245882,Fisica,6.0,8.0

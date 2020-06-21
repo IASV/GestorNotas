@@ -55,14 +55,18 @@ public class Fecha {
     
     public static int getStringFecha(String fecha, String value){
         String[] values = fecha.split("/");
-        if(value == "d")
-            return Integer.parseInt(values[0]);
-        else if(value == "m")
-            return Integer.parseInt(values[1]);
-        else if(value == "a")
-            return Integer.parseInt(values[2]);
-        else
+        if(null == value)
             return -1;
+        else switch (value) {
+            case "d":
+                return Integer.parseInt(values[0]);
+            case "m":
+                return Integer.parseInt(values[1]);
+            case "a":
+                return Integer.parseInt(values[2]);
+            default:
+                return -1;
+        }
     }
             
 }

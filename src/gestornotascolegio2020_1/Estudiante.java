@@ -31,8 +31,10 @@ public class Estudiante extends Persona{
             reader = new FileReader (archivo);
             buffer = new BufferedReader(reader);
             String linea;
-            
+//            int cont = 0;
             while((linea = buffer.readLine())!= null) {
+//                cont++;
+//                System.out.println("Cuenta: "+ cont);
                 String[] datos=linea.split(",");
                 Fecha fecha = new Fecha(Fecha.getStringFecha(datos[4], "d"),Fecha.getStringFecha(datos[4], "m"),Fecha.getStringFecha(datos[4], "a"));
                 Estudiante c = new Estudiante(TipoID.compareTipoID(datos[0]),Long.parseLong(datos[1]),datos[2],Sexo.compareSexo(datos[3]),fecha);

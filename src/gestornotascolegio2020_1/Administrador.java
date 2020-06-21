@@ -87,7 +87,7 @@ public class Administrador extends Persona{
                         newStudent.setNombre(teclado.next());
 
                         //Sexo
-                        System.out.print("Elija el sexo\n1. Masculino\n 2. Femenino\n--> ");
+                        System.out.print("Elija el sexo\n1. Masculino\n2. Femenino\n--> ");
                         switch(teclado.nextInt()){
                             case 1:
                                 newStudent.setSexo(Sexo.Masculino);
