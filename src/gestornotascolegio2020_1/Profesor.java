@@ -20,7 +20,7 @@ public class Profesor extends Persona{
     private String titulo = "";
     private Materia materia;
 
-    static ArrayList<Profesor> ListaProfesores;
+    static ArrayList<Profesor> ListaProfesores = new ArrayList<>();
 
 //    public Profesor(int actaPosecion, String titulo, Materia materia) {
 //        this.actaPosecion = actaPosecion;
@@ -31,7 +31,7 @@ public class Profesor extends Persona{
     public Profesor() {
         this.actaPosecion =0;
         this.titulo = "";
-        ListaProfesores = new ArrayList<>();
+//        ListaProfesores = new ArrayList<>();
     }
 
     public Profesor(int actaPosecion, String titulo, Materia materia, TipoID tipoID, long noID, String nombre, Sexo sexo, Fecha fechaNacimiento) {
@@ -40,7 +40,7 @@ public class Profesor extends Persona{
         this.titulo = titulo;
         this.materia = materia;
         
-        ListaProfesores = new ArrayList<>();
+//        ListaProfesores = new ArrayList<>();
     }
 
     
@@ -169,10 +169,22 @@ public class Profesor extends Persona{
             while( (linea=buffer.readLine()) != null) {
                 
                 String[] datos=linea.split(",");
-                Profesor c=new Profesor(getActaPosecion(),getTitulo(),getMateria(),getTipoID(),getNoID(),getNombre(),getSexo(),getFechaNacimiento());
+                
+//                System.out.println(datos.length);
+//                for (int i = 0; i <= datos.length-1; i++) {
+//                    System.out.print(datos[i] + ", ");
+//                }
+//                System.out.println();                
+                
+                Fecha fechaProfesor = new Fecha(Fecha.getStringFecha(datos[7], "d"), Fecha.getStringFecha(datos[7], "m"), Fecha.getStringFecha(datos[7], "a"));
+                Profesor c=new Profesor(Integer.parseInt(datos[0]),datos[1],Materia.compareMateria(datos[2]),TipoID.compareTipoID(datos[3]),Integer.parseInt(datos[4]),datos[5],Sexo.compareSexo(datos[6]),fechaProfesor);
                 
                 Profesor.ListaProfesores.add(c);
             }
+            //Ver profesores
+            System.out.println("Lista profesores");
+            Profesor.Listar();            
+            
         }
         catch(Exception e){
             e.printStackTrace();
@@ -205,7 +217,7 @@ public class Profesor extends Persona{
 
            for(Profesor c: Profesor.ListaProfesores){
 
-              Lineas +=c.getLinea();
+              Lineas +=c.getLinea() + "\n";
 
            }
            
@@ -233,7 +245,7 @@ public class Profesor extends Persona{
         
     }
     
-    public void Listar(){
+    public static void Listar(){
         
         for(Profesor k: Profesor.ListaProfesores){
             k.imprimir();
@@ -297,7 +309,7 @@ public class Profesor extends Persona{
 
     public void imprimir() {
        
-        System.out.println(getTipoID() + "," +  getNoID() + "," +  getNombre() + "," +  getSexo() + "," + getFechaNacimiento());
+        System.out.println(getActaPosecion() + "," + getTitulo() + "," + getTipoID() + "," +  getNoID() + "," +  getNombre() + "," +  getSexo() + "," + getFechaNacimiento().getFecha());
         
     }
     

@@ -48,8 +48,8 @@ public class Estudiante extends Persona{
 //TarjetaIdentidad,1003245582,Andres,Masculino,2/3/2002
                 
             }
-            System.out.println("Lista estudiantes");
-            Estudiante.Listar();
+//            System.out.println("Lista estudiantes");
+//            Estudiante.Listar();
             
         }
         catch(Exception e){

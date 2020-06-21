@@ -1,1 +1,6 @@
 1,Licenciado,Fisica,TarjetaIdentidad,1003245574,Esteban,Masculino,2/3/1990
+<<<<<<< HEAD
+=======
+22,Ingeniera,Fisica,Cedula,1003245623,Maria,Femenino,3/5/1990
+90,Licendiado,Quimica,Cedula,100324531,Ronaldo,Masculino,4/1/2000
+>>>>>>> temp-branch
