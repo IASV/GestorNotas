@@ -37,7 +37,6 @@ public class Administrador extends Persona{
         Sexo sexo;
         Fecha fechaNacimiento;
         
-        Profesor newProfesor = new Profesor();
         
 //        System.out.print("_______________ Bienvenido _______________\n\n"
 //                + "Ingrese usuario\n--> ");
@@ -54,6 +53,7 @@ public class Administrador extends Persona{
                         + "4. Eliminar maestro\n"
                         + "5. Salir\n"
                         + "6. Ver estudiantes\n"
+                        + "7. Ver profesores\n"
                         + "\n--> ");
                 op = teclado.nextInt();
 
@@ -122,7 +122,7 @@ public class Administrador extends Persona{
                         
                     case 2:
                         //Cargar profesores
-                        //newProfesor.CargarLista();
+                        Profesor newProfesor = new Profesor();
                         //Create teacher
                         //TipoID
                         System.out.print("Escoja tipo de ID\n1. Tarjeta de identidad\n2. Cédula\n3. Pasaporte\n--> ");
@@ -231,7 +231,7 @@ public class Administrador extends Persona{
                             long idProfe = teclado.nextLong();
                             System.out.print("Desea eliminar el profesor\n1. Si\n2. No\n--> ");
                             if(teclado.nextInt() == 1){
-                                newProfesor.Eliminar(idProfe);
+                                //newProfesor.Eliminar(idProfe);
                                 System.out.println("Profesor eliminado con exito");
                             }
                             else{
@@ -248,6 +248,12 @@ public class Administrador extends Persona{
                         //Ver estudiantes
                         System.out.println("Lista estudiantes");
                         Estudiante.Listar();
+                        break;
+                        
+                    case 7:
+                        //Ver profesores
+                        System.out.println("Lista profesores");
+                        Profesor.Listar();
                         break;
 
                     default:
