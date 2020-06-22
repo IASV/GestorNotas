@@ -37,11 +37,12 @@ public class Profesor extends Persona{
         long NoIDProfesor;
         long NoID;
         int op;
-        System.out.print("_______________ Bienvenido _______________\n\n"
+        System.out.println("__________________________________________________");
+        System.out.print("_______________ Bienvenido Docente _______________\n\n"
             + "Ingrese su número de identificación\n--> ");
         NoIDProfesor = teclado.nextLong();
         if(Encontrar(NoIDProfesor)){
-            do{
+            do{ System.out.println("_____________________________________________");
                 System.out.print("_______________ Menú Profesor _______________\n\n"
                             + "1. Registrar nota estudiante\n"
                             + "2. Salir\n"
@@ -227,6 +228,7 @@ public class Profesor extends Persona{
         
     public void Add(Profesor c){
         Profesor.ListaProfesores.add(c);
+        System.out.println("Profesor/a añadido con éxito.");
         
     }
     
@@ -238,12 +240,14 @@ public class Profesor extends Persona{
         
     }
       
-    public int Buscar(long NoID){
+    public static int BuscarPosicion(long NoID){
         int c=0;
         for(Profesor k: Profesor.ListaProfesores){
             
             if(k.getNoID() == NoID){
+                System.out.println("__________________________Datos__________________________");
                 k.imprimir();
+                System.out.println("_________________________________________________________");
                 return c;
             }
             c++;
@@ -269,22 +273,22 @@ public class Profesor extends Persona{
         return null;
     }
     
-    public boolean Eliminar(long numero){
+    public static boolean Eliminar(long NoID){
         
         for(Profesor k: Profesor.ListaProfesores){
-//           if(k.getNumero()==numero){
-//               
-//               int q=Buscar(numero);
-//               System.out.println("Esta seguro de eliminar este registro Si --> y, No cualquier tecla");
-//               String op=new java.util.Scanner(System.in).next();
-//               
-//               if (op.equals("y")) {
-//                    length--;
-//                    lista.remove(q);              
-//                    return true;
-//               }
-//              
-//           }
+           if(k.getNoID() == NoID){
+               
+               int q=BuscarPosicion(NoID);
+               System.out.print("Esta seguro de eliminar este registro \n1. Si \n2. No\n--> ");
+               String op=new java.util.Scanner(System.in).next();
+               
+               if (op.equals("1")) {
+                    Profesor.ListaProfesores.remove(q);              
+                    System.out.println("Docente eliminado con exito.");
+                    return true;
+               }
+              
+           }
            
         }
         return false;

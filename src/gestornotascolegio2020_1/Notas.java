@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gestornotascolegio2020_1;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -11,10 +8,6 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
-/**
- *
- * @author Usuario
- */
 
 public class Notas {
     private Scanner teclado = new Scanner(System.in);
@@ -85,7 +78,7 @@ public class Notas {
     public float promedioNotas(int nNotas){
         float n = 0;
         for (int i = 0; i < nNotas; i++) {
-            System.out.print("Ingrse nota "+(i+1)+"\n--> ");
+            System.out.print("Ingrese nota "+(i+1)+"\n--> ");
             n += teclado.nextFloat();
         }
         return n/nNotas;
@@ -165,6 +158,7 @@ public class Notas {
         
     public void Add(Notas c){
         Notas.ListaNotas.add(c);
+        System.out.println("Notas añadida con éxito.");
         
     }
     
@@ -226,28 +220,7 @@ public class Notas {
                return true;
         }
         return false;
-    }
-    
-    public boolean Eliminar(long numero){
-        
-        for(Notas k: Notas.ListaNotas){
-//           if(k.getNumero()==numero){
-//               
-//               int q=Buscar(numero);
-//               System.out.println("Esta seguro de eliminar este registro Si --> y, No cualquier tecla");
-//               String op=new java.util.Scanner(System.in).next();
-//               
-//               if (op.equals("y")) {
-//                    length--;
-//                    lista.remove(q);              
-//                    return true;
-//               }
-//              
-//           }
-           
-        }
-        return false;
-    }    
+    }   
 
     public void imprimir() {
        

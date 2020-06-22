@@ -1,11 +1,6 @@
 
 package gestornotascolegio2020_1;
 
-//import java.io.BufferedReader;
-//import java.io.File;
-//import java.io.FileReader;
-//import java.io.FileWriter;
-//import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,24 +27,25 @@ public class Administrador extends Persona{
         boolean exit = false;
         Fecha fechaNacimiento;
         
-        
-        System.out.println("_______________ Bienvenido _______________");
+        System.out.println("_______________\nDatos\n_______________\nUser: root\nPassword: 12345\n_______________");
+        System.out.println("________________________________________________________");
+        System.out.println("_______________ Bienvenido administrador _______________");
         System.out.print("Ingrese usuario\n--> ");
         NameUser = teclado.next();
         System.out.print("Ingrese contraseña\n--> ");
         NoIDUser = teclado.nextLong();
         
         if ("root".equals(NameUser) & NoIDUser == 12345){ 
-            do{
+            do{ System.out.println("__________________________________________________");
                 System.out.print("_______________ Menú administrador _______________\n\n"
                         + "1. Crear estudiante\n"
-                        + "2. Crear profesor/a\n"
+                        + "2. Crear Docentes\n"
                         + "3. Eliminar estudiante\n"
-                        + "4. Eliminar profesor/a\n"
+                        + "4. Eliminar Docente\n"
                         + "5. Consultar o ver boletines\n"
-                        + "6. Salir\n"
-                        + "7. Ver estudiantes\n"
-                        + "8. Ver profesores\n"
+                        + "6. Ver estudiantes\n"
+                        + "7. Ver Docentes\n"
+                        + "8. Salir\n"
                         + "\n--> ");
                 op = teclado.nextInt();
 
@@ -136,11 +132,11 @@ public class Administrador extends Persona{
                         } 
 
                         //NoID
-                        System.out.print("Ingrese el número de identifiacación del profesor/a\n--> ");
+                        System.out.print("Ingrese el número de identifiacación del docente\n--> ");
                         newProfesor.setNoID(teclado.nextLong());
                         
                         //Nombre
-                        System.out.print("Ingrese el nombre del profesor/a\n--> ");
+                        System.out.print("Ingrese el nombre del Docente\n--> ");
                         newProfesor.setNombre(teclado.next());
 
                         //Sexo
@@ -169,16 +165,16 @@ public class Administrador extends Persona{
                         newProfesor.setFechaNacimiento(fechaNacimientoProfesor);
                         
                         //Acta de Posición
-                        System.out.print("Ingrese el acta de posición númerica\n--> ");
+                        System.out.print("Ingrese el acta de posición númerica\nMaximo 4 digitos\n--> ");
                         newProfesor.setActaPosecion(teclado.nextInt());
                         
                         //Título
-                        System.out.print("Ingrese el título del profesor/a\nSolo una plabra. Ej: Ingeniero/a, Licenciado/a, etc\n--> ");
+                        System.out.print("Ingrese el título del docente\nSolo una plabra. Ej: Ingeniero/a, Licenciado/a, etc\n--> ");
                         newProfesor.setTitulo(teclado.next());
                         
                         
                         //Set asignature to teachers
-                        System.out.print("Elige materia a saignar al maestro\n1. Cálculo\n2. Física\n3. Quimica\n4. Religión\n5. Ética\n--> ");
+                        System.out.print("Elige materia a saignar al docente\n1. Cálculo\n2. Física\n3. Quimica\n4. Religión\n5. Ética\n--> ");
                         switch(teclado.nextInt()){
                             case 1:
                                 newProfesor.setMateria(Materia.Calculo);
@@ -209,11 +205,12 @@ public class Administrador extends Persona{
                     case 3:
                         //Delete student
                             System.out.print("Ingrese el número de identificación del estudiante\n--> ");
-                            long id = teclado.nextLong();
+                            long NoIDEstudiante = teclado.nextLong();
                             System.out.print("Dese eliminar el estudiante\n1. Si\n2. No\n--> ");
                             if(teclado.nextInt() == 1){
-                                //newStudent.Eliminar(id);
-                                System.out.print("Estudiante eliminado con exito");
+                                if(Estudiante.Eliminar(NoIDEstudiante));
+                                else
+                                    System.out.println("Estudiante no eliminado");
                             }
                             else{
                                 System.out.print("Estudiante no eliminado");
@@ -222,14 +219,16 @@ public class Administrador extends Persona{
 
                     case 4:
                         //Delete teacher
-                            System.out.print("Ingrese el número de identificación del profesor\n--> ");
-                            long idProfe = teclado.nextLong();
+                            System.out.print("Ingrese el número de identificación del docente\n--> ");
+                            long NoIDDocente = teclado.nextLong();
                             System.out.print("Desea eliminar el profesor\n1. Si\n2. No\n--> ");
-                            if(teclado.nextInt() == 1){
-                                System.out.println("Profesor eliminado con exito");
+                            if(teclado.nextInt() == 1){                                
+                                if(Profesor.Eliminar(NoIDDocente));
+                                else
+                                    System.out.println("Docente no eliminado");
                             }
                             else{
-                                System.out.println("Profesor no eliminado");
+                                System.out.println("Docente no eliminado");
                             }
                         break;
                     
@@ -261,22 +260,24 @@ public class Administrador extends Persona{
                         break;
                         
                     case 6:
+                        //Ver estudiantes
+                        System.out.println("____________________________________________________");
+                        System.out.println("_______________ Lista de estudiantes _______________");
+                        Estudiante.Listar();
+                        break;
+                        
+                    case 7:
+                        //Ver profesores
+                        System.out.println("_________________________________________________");
+                        System.out.println("_______________ Lista de docentes _______________");
+                        Profesor.Listar();
+                        break;
+
+                    case 8:
                         //Exit
                         exit = true;
                         break;
                         
-                    case 7:
-                        //Ver estudiantes
-                        System.out.println("Lista estudiantes");
-                        Estudiante.Listar();
-                        break;
-                        
-                    case 8:
-                        //Ver profesores
-                        System.out.println("Lista profesores");
-                        Profesor.Listar();
-                        break;
-
                     default:
                         System.out.println("¡Oops!, ha ocurrido un error.");
                         break;

@@ -90,6 +90,7 @@ public class Estudiante extends Persona{
         
     public void Add(Estudiante c){
         Estudiante.ListaEstudiantes.add(c);
+        System.out.println("Estudiante añadido con éxito.\n");
         
     }
     
@@ -110,6 +111,20 @@ public class Estudiante extends Persona{
             }
         }
         return false;
+    }
+    
+    public static int BuscarPosicion(long NoID){
+        int c=0;
+        for(Estudiante k: Estudiante.ListaEstudiantes){
+            if(k.getNoID() == NoID){
+                System.out.println("__________________________Datos__________________________");
+                k.imprimir();
+                System.out.println("_________________________________________________________");
+                return c;
+            }
+            c++;
+        }
+        return -1;
     }
     
     public static String BuscarNombre(long NoID){
@@ -139,27 +154,26 @@ public class Estudiante extends Persona{
         return true;
     }
     
-    public boolean Eliminar(long numero){
+    public static boolean Eliminar(long NoID){
         
         for(Estudiante k: Estudiante.ListaEstudiantes){
-//           if(k.getNumero()==numero){
-//               
-//               int q=Buscar(numero);
-//               System.out.println("Esta seguro de eliminar este registro Si --> y, No cualquier tecla");
-//               String op=new java.util.Scanner(System.in).next();
-//               
-//               if (op.equals("y")) {
-//                    length--;
-//                    lista.remove(q);              
-//                    return true;
-//               }
-//              
-//           }
+           if(k.getNoID()==NoID){
+               int q=BuscarPosicion(NoID);
+               System.out.print("Esta seguro de eliminar este registro \n1. Si \n2. No\n--> ");
+               String op=new java.util.Scanner(System.in).next();
+               
+               if (op.equals("1")) {
+                    ListaEstudiantes.remove(q);  
+                    System.out.println("Estudiante eliminado con exito.");
+                    return true;
+               }
+              
+           }
            
         }
         return false;
     }
-    
+  
     public void imprimir() {
        
         System.out.println(getTipoID() + "," +  getNoID() + "," +  getNombre() + "," +  getSexo() + "," + getFechaNacimiento().getFecha());

@@ -1,4 +1,6 @@
+
 package gestornotascolegio2020_1;
+
 import java.util.ArrayList;
 
 public class Boletin {

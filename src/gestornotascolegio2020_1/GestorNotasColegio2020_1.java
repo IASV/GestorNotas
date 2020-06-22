@@ -1,4 +1,6 @@
+
 package gestornotascolegio2020_1;
+
 import java.util.Scanner;
 
 public class GestorNotasColegio2020_1 {
@@ -18,9 +20,16 @@ public class GestorNotasColegio2020_1 {
         teacher.CargarLista();
         note.CargarLista();
 
-        do{
+        System.out.println("_______________________________________________________\n"
+            + "Colaboradores: Iván Suarez, Kevin García, Jesús Ramirez,\n"
+            + "Yuliana Trigos, Sebastian Quitero, Fray Herrera\n"
+            + "_______________________________________________________\n"
+            + "Integrantes del grupo: Iván Suarez, Kevin García\n"
+            + "_______________________________________________________");
+        
+        do{ 
             System.out.print("1. Administradores\n"
-                    + "2. Profesores\n"
+                    + "2. Docentes\n"
                     + "3. Salir\n"
                     + "--> ");
             

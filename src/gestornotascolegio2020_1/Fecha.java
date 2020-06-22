@@ -1,7 +1,6 @@
 
 package gestornotascolegio2020_1;
 
-
 public class Fecha {
     
     private int dia;
