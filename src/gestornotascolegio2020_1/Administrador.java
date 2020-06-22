@@ -30,17 +30,12 @@ public class Administrador extends Persona{
         long NoIDUser;
         int op;
         boolean exit = false;
-        
-        TipoID tipoID;
-        long noID;
-        String nombre;
-        Sexo sexo;
         Fecha fechaNacimiento;
         
         
-        System.out.print("_______________ Bienvenido _______________\n\n"
-                + "Ingrese usuario\n--> ");
-        NameUser = teclado.nextLine();
+        System.out.println("_______________ Bienvenido _______________");
+        System.out.print("Ingrese usuario\n--> ");
+        NameUser = teclado.next();
         System.out.print("Ingrese contraseña\n--> ");
         NoIDUser = teclado.nextLong();
         
@@ -48,10 +43,10 @@ public class Administrador extends Persona{
             do{
                 System.out.print("_______________ Menú administrador _______________\n\n"
                         + "1. Crear estudiante\n"
-                        + "2. Crear maestro\n"
+                        + "2. Crear profesor/a\n"
                         + "3. Eliminar estudiante\n"
-                        + "4. Eliminar maestro\n"
-                        + "5. Consultar boletines\n"
+                        + "4. Eliminar profesor/a\n"
+                        + "5. Consultar o ver boletines\n"
                         + "6. Salir\n"
                         + "7. Ver estudiantes\n"
                         + "8. Ver profesores\n"
@@ -112,7 +107,6 @@ public class Administrador extends Persona{
                         newStudent.setFechaNacimiento(fechaNacimiento);
 
                         //Añdir estudiante la lista
-                        //if(newStudent.Encontrar(newStudent))
                         newStudent.Add(newStudent);
                         System.out.println("Estudiante agregado a la lista.");
                         newStudent.imprimir();
@@ -232,7 +226,6 @@ public class Administrador extends Persona{
                             long idProfe = teclado.nextLong();
                             System.out.print("Desea eliminar el profesor\n1. Si\n2. No\n--> ");
                             if(teclado.nextInt() == 1){
-                                //newProfesor.Eliminar(idProfe);
                                 System.out.println("Profesor eliminado con exito");
                             }
                             else{
@@ -246,7 +239,6 @@ public class Administrador extends Persona{
                         long NoIDStudent = teclado.nextInt();
                         if(Estudiante.Buscar(NoIDStudent)){
                             Materia[] materia = {Materia.Calculo, Materia.Fisica, Materia.Quimica, Materia.Religion, Materia.Etica};
-//                            Boletin.PublicarBoletin(NoIDStudent, materia, Periodo.Periodo1);
                             float p1 = Notas.BuscarPromedioPeriodoMateria(NoIDStudent, Materia.Calculo, Periodo.Periodo1);
                             float p2 = Notas.BuscarPromedioPeriodoMateria(NoIDStudent, Materia.Calculo, Periodo.Periodo2);
                             float p3 = Notas.BuscarPromedioPeriodoMateria(NoIDStudent, Materia.Calculo, Periodo.Periodo3);
@@ -294,165 +286,6 @@ public class Administrador extends Persona{
         }
         else
             System.out.println("¡Oops!, ha ocurrido un error.\nIntenta de nuevo.");
-        
     }
 }
     
-//    
-//    public void CargarLista(){
-//        //carga la lista de contactos del origen de datos
-//        
-//        File archivo = null;
-//        FileReader reader = null;
-//        BufferedReader buffer = null;
-//        try {
-//            archivo = new File("Files\\Administrador.txt");
-//            reader = new FileReader (archivo);
-//            buffer = new BufferedReader(reader);
-//            String linea;
-//            
-//            while( (linea=buffer.readLine()) != null) {
-//                
-//                String[] datos=linea.split(",");
-//                Administrador c=new Administrador(getTipoID(),getNoID(),getNombre(),getSexo(),getFechaNacimiento());
-//                
-//                Administrador.ListaAdministradores.add(c);
-//            }
-//        }
-//        catch(Exception e){
-//            e.printStackTrace();
-//        }finally{
-//            try{
-//                if( null != reader ){
-//                    reader.close();
-//                }
-//            }catch (Exception e2){
-//                e2.printStackTrace();
-//            }
-//        }
-//
-//    }
-//
-//    
-//    
-//    String getLinea(){
-//        return getTipoID() + "," +  getNoID() + "," +  getNombre() + "," +  getSexo() + "," + getFechaNacimiento().getFecha();
-//    }
-//    
-//    public void Sincronizar(){
-//        //sincroniza la lista con el origen de datos
-//       File fichero = null;
-//       FileWriter writer = null;
-//       PrintWriter pw = null;
-//       try
-//       {
-//           String Lineas="";
-//
-//           for(Administrador c: Administrador.ListaAdministradores){
-//
-//              Lineas +=c.getLinea();
-//
-//           }
-//           
-//            fichero = new File("Files\\Administrador.txt");
-//            writer = new FileWriter(fichero,false);
-//            pw = new PrintWriter(writer);
-//            pw.print(Lineas);
-//
-//       } catch (Exception e) {
-//           e.printStackTrace();
-//       } finally {
-//
-//           try {
-//               if (null != writer) {
-//                   writer.close();
-//               }
-//           } catch (Exception e2) {
-//               e2.printStackTrace();
-//           }
-//       }
-//    }
-//        
-//    public void Add(Administrador c){
-//        Administrador.ListaAdministradores.add(c);
-//        
-//    }
-//    
-//    public void Listar(){
-//        
-//        for(Administrador k: Administrador.ListaAdministradores){
-//            k.imprimir();
-//        }
-//        
-//    }
-//    
-//    public static boolean BuscarNoID(long NoID){
-//        for(Administrador k: Administrador.ListaAdministradores){
-//           
-//            if(k.getNoID() == NoID){
-//                k.imprimir(); 
-//                return true;
-//            }
-//           
-//        }
-//        return false;
-//    }
-//      
-//    public static boolean BuscarNombre(String nombre){
-//        for(Administrador k: Administrador.ListaAdministradores){
-//            
-//            if(k.getNombre().equals(nombre)){
-//                k.imprimir();
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//    
-//    public boolean Encontrar(String nombre){
-//        
-//        for(Administrador k: Administrador.ListaAdministradores){
-//            if(k.getNombre().equals(nombre))
-//               return true;
-//        }
-//        return false;
-//    }
-//    
-//    public boolean Eliminar(long numero){
-//        
-//        for(Administrador k: Administrador.ListaAdministradores){
-//           if(k.getNumero()==numero){
-//               
-//               int q=Buscar(numero);
-//               System.out.println("Esta seguro de eliminar este registro Si --> y, No cualquier tecla");
-//               String op=new java.util.Scanner(System.in).next();
-//               
-//               if (op.equals("y")) {
-//                    length--;
-//                    lista.remove(q);              
-//                    return true;
-//               }
-//              
-//           }
-//           
-//        }
-//        return false;
-//    }
-//    
-//   
-//    public void Actualizar(String nombre, long telefono){
-//       
-//        int op=Buscar(nombre);
-//        
-//        if (op>=0) {
-//             //Profesor.ListaProfesores.;
-//        }
-//         
-//    }
-//
-//    public void imprimir() {
-//       
-//        System.out.println(getTipoID() + "," +  getNoID() + "," +  getNombre() + "," +  getSexo() + "," + getFechaNacimiento());
-//        
-//    }
-//}

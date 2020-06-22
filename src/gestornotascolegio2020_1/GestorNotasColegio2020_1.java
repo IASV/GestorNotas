@@ -10,23 +10,13 @@ public class GestorNotasColegio2020_1 {
         Profesor teacher = new Profesor();
         Estudiante student = new Estudiante();
         Notas note = new Notas();
-        Boletin boletin = new Boletin();
-        
+
         int op;
         Scanner teclado = new Scanner(System.in);
         
         student.CargarLista();
         teacher.CargarLista();
         note.CargarLista();
-//        Profesor p=new Profesor();
-//        
-//        p.CargarLista();
-//        
-//        for (Profesor q : Profesor.ListaProfesores) {
-//            q.imprimir();
-//        }
-
-        
 
         do{
             System.out.print("1. Administradores\n"

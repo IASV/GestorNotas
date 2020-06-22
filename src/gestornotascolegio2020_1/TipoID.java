@@ -25,7 +25,6 @@ public enum TipoID {
     }
     
     public static TipoID compareTipoID(String tipoID){
-//        System.out.println("tipoID: "+tipoID);
         if("TarjetaIdentidad".equals(tipoID))
             return getTarjetaIdentidad();
         else if("Cedula".equals(tipoID))

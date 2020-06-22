@@ -11,7 +11,6 @@ public class Boletin {
     
     private static  void CreateItem(int colNumber, int charNumber, boolean isLast)
     {
-        //System.out.print
         for (int i = 0; i < colNumber; i++)
         {
             if (i == 0 && !isLast) System.out.print("╠");

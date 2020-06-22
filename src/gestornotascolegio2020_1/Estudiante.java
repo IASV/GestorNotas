@@ -13,7 +13,6 @@ public class Estudiante extends Persona{
     static ArrayList<Estudiante> ListaEstudiantes = new ArrayList<>();
     
     public Estudiante() {
-        //ListaEstudiantes = new  ArrayList<>();
     }
 
     public Estudiante(TipoID tipoID, long noID, String nombre, Sexo sexo, Fecha fechaNacimiento) {
@@ -31,28 +30,12 @@ public class Estudiante extends Persona{
             reader = new FileReader (archivo);
             buffer = new BufferedReader(reader);
             String linea;
-//            int cont = 0;
             while((linea = buffer.readLine())!= null) {
-//                cont++;
-//                System.out.println("Cuenta: "+ cont);
                 String[] datos=linea.split(",");
                 Fecha fecha = new Fecha(Fecha.getStringFecha(datos[4], "d"),Fecha.getStringFecha(datos[4], "m"),Fecha.getStringFecha(datos[4], "a"));
                 Estudiante c = new Estudiante(TipoID.compareTipoID(datos[0]),Long.parseLong(datos[1]),datos[2],Sexo.compareSexo(datos[3]),fecha);
-                Estudiante.ListaEstudiantes.add(c);
-      
-//                System.out.println(datos.length);
-//                for (int i = 0; i < datos.length; i++) {
-//                    System.out.print(datos[i] + ", ");
-//                }
-//                System.out.println();
-                
-//TarjetaIdentidad,1003245582,Camilo,Masculino,2/3/2002
-//TarjetaIdentidad,1003245582,Andres,Masculino,2/3/2002
-                
+                Estudiante.ListaEstudiantes.add(c);                      
             }
-//            System.out.println("Lista estudiantes");
-//            Estudiante.Listar();
-            
         }
         catch(Exception e){
             e.printStackTrace();
@@ -65,13 +48,8 @@ public class Estudiante extends Persona{
                 e2.printStackTrace();
             }
         }
-        
-        
-
     }
 
-    
-    
     String getLinea(){
         return getTipoID() + "," +  getNoID() + "," +  getNombre() + "," +  getSexo() + "," + getFechaNacimiento().getFecha();
     }
@@ -182,17 +160,6 @@ public class Estudiante extends Persona{
         return false;
     }
     
-   
-//    public void Actualizar(String nombre, long telefono){
-//       
-//        int op=Buscar(nombre);
-//        
-//        if (op>=0) {
-//             //Profesor.ListaProfesores.;
-//        }
-//         
-//    }
-
     public void imprimir() {
        
         System.out.println(getTipoID() + "," +  getNoID() + "," +  getNombre() + "," +  getSexo() + "," + getFechaNacimiento().getFecha());

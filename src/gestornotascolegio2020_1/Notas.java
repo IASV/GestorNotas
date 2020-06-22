@@ -30,11 +30,6 @@ public class Notas {
         NotaFinal = 0;
         promedio = 0;
     }
-    //0,1003245577,Calculo,Promedio,0
-    //1,1003245577,Calculo,6,6
-    //2,1003245577,Calculo,7,6+PrimedioP2
-    //3,1003245577,Calculo,Promdeio,PromedioP2+PrimedioP3
-    //4,1003245577,Calculo,Promedio,(PromedioP3+PrimedioP4)/4
     
     static ArrayList<Notas> ListaNotas = new ArrayList<>();
     
@@ -44,21 +39,12 @@ public class Notas {
         this.materia = materia;
         this.NotaFinal = NotaFinal;
         this.promedio = promedio;
-        
-//        ListaNotas = new ArrayList<>();
     }
     
     public float getPromedio() {
         return promedio;
     }
 
-//    public Notas(long NoID, Materia materia, float NotaFinal) {
-//        this.NoID = NoID;
-//        this.materia = materia;
-//        this.NotaFinal = NotaFinal;
-//        
-//        ListaNotas = new ArrayList<>();
-//    }
     public void setPromedio(float promedio) {
         this.promedio = promedio;
     }
@@ -96,8 +82,6 @@ public class Notas {
         this.NotaFinal = NotaFinal;
     }
 
-    
-    
     public float promedioNotas(int nNotas){
         float n = 0;
         for (int i = 0; i < nNotas; i++) {
@@ -141,8 +125,6 @@ public class Notas {
 
     }
 
-    
-    
     String getLinea(){
         return getPeriodo() + "," + getNoID() + "," +  getMateria() + "," + getPromedio() + "," +  getNotaFinal();
     }
@@ -187,7 +169,6 @@ public class Notas {
     }
     
     public static void Listar(){
-        
         for(Notas k: Notas.ListaNotas){
             k.imprimir();
         }
@@ -195,7 +176,6 @@ public class Notas {
     }
       
     public boolean Buscar(long NoID){
-        //int c=0;
         for(Notas k: Notas.ListaNotas){
             
             if(k.getNoID() == NoID){
@@ -267,18 +247,7 @@ public class Notas {
            
         }
         return false;
-    }
-    
-   
-//    public void Actualizar(long NoID){
-//       
-//        int op=Buscar(NoID);
-//        
-//        if (op>=0) {
-//             //Profesor.ListaProfesores.;
-//        }
-//         
-//    }
+    }    
 
     public void imprimir() {
        
