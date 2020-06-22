@@ -38,13 +38,13 @@ public class Administrador extends Persona{
         Fecha fechaNacimiento;
         
         
-//        System.out.print("_______________ Bienvenido _______________\n\n"
-//                + "Ingrese usuario\n--> ");
-//        NameUser = teclado.nextLine();
-//        System.out.print("Ingrese contraseña\n--> ");
-//        NoIDUser = teclado.nextLong();
-//        "root".equals(NameUser) & NoIDUser == 12345
-        if (true){ 
+        System.out.print("_______________ Bienvenido _______________\n\n"
+                + "Ingrese usuario\n--> ");
+        NameUser = teclado.nextLine();
+        System.out.print("Ingrese contraseña\n--> ");
+        NoIDUser = teclado.nextLong();
+        
+        if ("root".equals(NameUser) & NoIDUser == 12345){ 
             do{
                 System.out.print("_______________ Menú administrador _______________\n\n"
                         + "1. Crear estudiante\n"
@@ -251,13 +251,13 @@ public class Administrador extends Persona{
                             float p2 = Notas.BuscarPromedioPeriodoMateria(NoIDStudent, Materia.Calculo, Periodo.Periodo2);
                             float p3 = Notas.BuscarPromedioPeriodoMateria(NoIDStudent, Materia.Calculo, Periodo.Periodo3);
                             float p4 = Notas.BuscarPromedioPeriodoMateria(NoIDStudent, Materia.Calculo, Periodo.Periodo4);
-                            if(p1 != 0.0 && p2 == 0.0 && p3 == 0.0 && p4 == 0.0){
+                            if(p2 == 0.0 & p3 == 0.0 & p4 == 0.0){
                                 Boletin.PublicarBoletin(NoIDStudent, materia, Periodo.Periodo1);
                             }
-                            else if(p1 != 0.0 && p2 != 0.0 && p3 == 0.0 && p4 == 0.0){
+                            else if(p3 == 0.0 && p4 == 0.0){
                                 Boletin.PublicarBoletin(NoIDStudent, materia, Periodo.Periodo2);
                             }
-                            else if(p1 != 0.0 && p2 != 0.0 && p3 != 0.0 && p4 == 0.0){
+                            else if(p4 == 0.0){
                                 Boletin.PublicarBoletin(NoIDStudent, materia, Periodo.Periodo3);
                             }
                             else if(p1 != 0.0 && p2 != 0.0 && p3 != 0.0 && p4 != 0.0){
@@ -292,6 +292,8 @@ public class Administrador extends Persona{
                 
             }while(exit != true);
         }
+        else
+            System.out.println("¡Oops!, ha ocurrido un error.\nIntenta de nuevo.");
         
     }
 }
